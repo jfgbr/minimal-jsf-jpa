@@ -1,4 +1,4 @@
-package com.jgalante.minimal;
+package com.jgalante.jgcrud.persistence;
 
 import java.io.Serializable;
 import java.util.List;
@@ -6,10 +6,13 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.transaction.Transactional;
 
+import com.jgalante.jgcrud.annotation.DataRepository;
+import com.jgalante.jgcrud.entity.BaseEntity;
 import com.jgalante.util.Reflections;
 
-public abstract class GenericDAO<T extends GenericEntity> implements
+public class BaseDAO<T extends BaseEntity> implements
 		Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -29,12 +32,22 @@ public abstract class GenericDAO<T extends GenericEntity> implements
 		return this.entityClass;
 	}
 
+	@SuppressWarnings("unchecked")
+	public void setEntityClass(Class<? extends BaseEntity> entityClass) {
+		this.entityClass = (Class<T>) entityClass;
+	}
+
 	protected EntityManager getEntityManager() {
 		return em;
 	}
 
 	public T find(Object id) {
 		return this.em.find(getEntityClass(), id);
+	}
+	
+	@Transactional
+	public void save(T entity) {
+		getEntityManager().merge(entity);		
 	}
 	
 	public List<T> findAll() {

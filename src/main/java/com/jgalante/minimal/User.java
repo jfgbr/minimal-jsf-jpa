@@ -1,20 +1,24 @@
 package com.jgalante.minimal;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.jgalante.jgcrud.entity.BaseEntity;
 
 @Entity
-@Table(name="User")
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
-public class User extends GenericEntity {
+@Table(name = "User", 
+		uniqueConstraints = @UniqueConstraint(
+				columnNames = {"name" }))
+@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+public class User extends BaseEntity {
 
-	private static final long serialVersionUID = 1L;
-
-	@Column(length=255)
+	@Column(length = 255, unique = true)
+	@NotEmpty(message = "{user.name.NotBlankOrEmpty.message}")
 	private String name;
 
 	public User() {
@@ -26,18 +30,6 @@ public class User extends GenericEntity {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	@Override
-	public String getTextoExibicao() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<String> getOrderBy() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

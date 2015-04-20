@@ -2,7 +2,9 @@ package com.jgalante.minimal;
 
 import java.util.List;
 
-public class UserDAO extends GenericDAO<User> {
+import com.jgalante.jgcrud.persistence.BaseDAO;
+
+public class UserDAO extends BaseDAO<User> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -10,5 +12,10 @@ public class UserDAO extends GenericDAO<User> {
 		List<User> users = super.findAll();
 		return users;
 	}
+
+//	@Transactional
+//	public void save(User user) {
+//		getEntityManager().merge(user);		
+//	}
 
 }

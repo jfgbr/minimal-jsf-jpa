@@ -11,17 +11,14 @@
 <body>
 	<h:form>
 		<h:messages id="msg"></h:messages>
-		<h:inputText id="txtTest" value="#{homeMB.test}" >
+		<h:inputText id="txtInfo" value="#{home1MB.info}" >
 		</h:inputText>
-		<br />
-		<h:inputText id="txtInfo" value="#{homeMB.info}" >
-		</h:inputText>
-		<h:commandButton value="ok" action="#{homeMB.action}">
+		<h:commandButton value="ok" action="#{home1MB.action}">
 			<f:ajax execute="txtInfo" render="grp-users msg"></f:ajax>
 		</h:commandButton>
 		
 		<h:panelGroup id="grp-users" layout="block">
-			<h:dataTable id="tbl-users" value="#{homeMB.users}" var="u">
+			<h:dataTable id="tbl-users" value="#{home1MB.users}" var="u">
 				<h:column>
 					#{u.id}
 				</h:column>

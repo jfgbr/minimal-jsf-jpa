@@ -1,8 +1,10 @@
-package com.jgalante.minimal;
+package com.jgalante.jgcrud.producer;
 
 import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import com.jgalante.jgcrud.annotation.DataRepository;
 
 //@Stateful
 //@ApplicationScoped

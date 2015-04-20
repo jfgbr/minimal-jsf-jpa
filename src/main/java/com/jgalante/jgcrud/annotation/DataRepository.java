@@ -1,4 +1,4 @@
-package com.jgalante.minimal;
+package com.jgalante.jgcrud.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
